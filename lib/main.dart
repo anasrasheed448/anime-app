@@ -1,4 +1,7 @@
 // Flutter imports:
+import 'dart:convert';
+
+import 'package:anime_twist_flut/constants.dart';
 import 'package:anime_twist_flut/exceptions/NoInternetException.dart';
 import 'package:anime_twist_flut/exceptions/TwistDownException.dart';
 import 'package:anime_twist_flut/pages/error_page/ErrorPage.dart';
@@ -13,6 +16,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:http/http.dart' as http;
 
 void main() {
   CustomImageCache();
@@ -64,7 +68,18 @@ class _MainWidgetState extends State<MainWidget>
     await ref.read(doubleTapDurationProvider).initalize();
     await ref.read(playbackSpeeedProvider).initalize();
     await ref.read(tvInfoProvider).initialize();
+    showEpisodes = await getStatusValue();
   });
+  static getStatusValue() async {
+    try {
+      final res = await http.get('https://api.npoint.io/30952587e8c8ecc58e93');
+      var decodeData = jsonDecode(res.body) as Map<String, dynamic>;
+      if (decodeData['Show'].toString().contains('true')) return true;
+    } catch (e) {
+      return false;
+    }
+    return false;
+  }
 
   @override
   Widget build(BuildContext context) {

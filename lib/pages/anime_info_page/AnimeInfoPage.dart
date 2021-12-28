@@ -392,11 +392,11 @@ class _AnimeInfoPageState extends State<AnimeInfoPage> {
                           ),
                         ),
 
-                        EpisodesSliver(
+                    if(showEpisodes)   EpisodesSliver(
 
                           episodes: episodes,
                           episodesWatchedProvider: _episodesWatchedProvider,
-                        ),
+                    ),
                         SliverToBoxAdapter(
                           child: SizedBox(
                             height: 15.0,

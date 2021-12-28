@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:anime_twist_flut/models/kitsu/KitsuModel.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:http/http.dart' as http;
 
 class WatchTrailerButton extends StatelessWidget {
   final KitsuModel kitsuModel;
@@ -25,7 +28,8 @@ class WatchTrailerButton extends StatelessWidget {
         bottom: 20.0,
       ),
       child: ElevatedButton(
-        onPressed: () {
+        onPressed: ()  {
+         
           launchTrailer(kitsuModel.trailerURL);
         },
         style: ElevatedButton.styleFrom(
@@ -59,3 +63,5 @@ class WatchTrailerButton extends StatelessWidget {
     );
   }
 }
+
+
