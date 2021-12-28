@@ -78,8 +78,9 @@ class DiscoverAnimeTile extends StatelessWidget {
             child: Material(
               color: Colors.transparent,
               child: InkWell(
-                onTap: () {
-                  Transitions.slideTransition(
+                onTap: () async {
+                  await toggleAd();
+                  await Transitions.slideTransition(
                     context: context,
                     pageBuilder: () => AnimeInfoPage(
                       twistModel: twistModel,

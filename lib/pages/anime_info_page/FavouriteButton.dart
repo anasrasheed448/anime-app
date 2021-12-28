@@ -3,6 +3,9 @@ import 'package:anime_twist_flut/models/kitsu/KitsuModel.dart';
 import 'package:anime_twist_flut/models/TwistModel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+
+import '../../constants.dart';
 
 class FavouriteButton extends StatelessWidget {
   const FavouriteButton(
@@ -39,10 +42,15 @@ class FavouriteButton extends StatelessWidget {
           return Material(
             color: Colors.transparent,
             child: InkWell(
-              onTap: () => prov.toggleFromFavourites(
-                twistModel,
-                kitsuModel,
-              ),
+              onTap: () async {
+                await toggleAd();
+                // await loadinterstitialAd();
+                // .whenComplete(() => showInterstitialAd());
+                prov.toggleFromFavourites(
+                  twistModel,
+                  kitsuModel,
+                );
+              },
               borderRadius: BorderRadius.circular(
                 8.0,
               ),

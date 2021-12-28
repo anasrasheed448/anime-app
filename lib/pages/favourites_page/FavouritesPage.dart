@@ -9,6 +9,8 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../../constants.dart';
+
 class FavouritesPage extends StatefulWidget {
   const FavouritesPage({Key key}) : super(key: key);
 
@@ -54,8 +56,21 @@ class _FavouritesPageState extends State<FavouritesPage>
             ),
           );
         }
-        return  Scaffold(
+        return Scaffold(
           appBar: AppBar(
+            automaticallyImplyLeading: false,
+            leading: 
+              GestureDetector(
+                onTap: () async {
+                  await toggleAd();
+                  Navigator.pop(context);
+                },
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 15.0),
+                  child: Icon(Icons.arrow_back_ios),
+                ),
+              ),
+            
             title: AppbarText(
               custom: 'Favourate',
             ),
@@ -70,7 +85,6 @@ class _FavouritesPageState extends State<FavouritesPage>
                     margin: EdgeInsets.symmetric(
                       horizontal: 15.0,
                     ),
-
                   ),
                   Expanded(
                     child: Padding(
@@ -79,9 +93,7 @@ class _FavouritesPageState extends State<FavouritesPage>
                       ),
                       child: Builder(
                         builder: (context) {
-
-
-                          return  Scrollbar(
+                          return Scrollbar(
                             controller: _scrollController,
                             child: CustomScrollView(
                               controller: _scrollController,
@@ -89,19 +101,23 @@ class _FavouritesPageState extends State<FavouritesPage>
                                 SliverPadding(
                                   padding: EdgeInsets.all(15.0),
                                   sliver: SliverGrid(
-                                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                                      crossAxisCount: isPortrait ? 2 : (width / 400).ceil(),
+                                    gridDelegate:
+                                        SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount:
+                                          isPortrait ? 2 : (width / 400).ceil(),
                                       crossAxisSpacing: 12,
                                       mainAxisSpacing: 16,
                                       childAspectRatio: isPortrait ? 0.65 : 1.4,
                                     ),
                                     delegate: SliverChildBuilderDelegate(
-                                          (context, index) {
+                                      (context, index) {
                                         var model = twistApiService
-                                            .getTwistModelFromSlug(favouritedAnimes[index].slug);
+                                            .getTwistModelFromSlug(
+                                                favouritedAnimes[index].slug);
 
                                         return FavouritedAnimeTile(
-                                          favouritedModel: favouritedAnimes.elementAt(index),
+                                          favouritedModel:
+                                              favouritedAnimes.elementAt(index),
                                           twistModel: model,
                                         );
                                       },
@@ -122,8 +138,7 @@ class _FavouritesPageState extends State<FavouritesPage>
           ),
         );
 
-
-       /*   Scrollbar(
+        /*   Scrollbar(
           controller: _scrollController,
           child: CustomScrollView(
             controller: _scrollController,

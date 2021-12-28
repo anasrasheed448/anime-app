@@ -1,6 +1,6 @@
 
-import 'dart:html';
-import 'dart:io' show Platform;
+import 'dart:io';
+// import 'dart:io';
 
 class AdHelper {
   static String get bannerAdUnitId {
@@ -21,4 +21,13 @@ class AdHelper {
       throw new UnsupportedError("Unsupported platform");
     }
   }
+
+  String getInterstitialAdUnitId() {
+  if (Platform.isIOS) {
+    return 'ca-app-pub-3940256099942544/4411468910';
+  } else if (Platform.isAndroid) {
+    return 'ca-app-pub-3940256099942544/1033173712';
+  }
+  return null;
+}
 }

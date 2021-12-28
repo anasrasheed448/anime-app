@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:anime_twist_flut/pages/favourites_page/FavouritesPage.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../constants.dart';
+
 class RootWindowPortrait extends StatelessWidget {
   RootWindowPortrait({
     Key key,
@@ -33,13 +35,15 @@ class RootWindowPortrait extends StatelessWidget {
             title: AppbarText(),
             actions: [
               IconButton(
+                
                 color: Colors.white30,
                 icon: Icon(
                   Icons.favorite,
                 ),
 
-                onPressed: () {
-                  Transitions.slideTransition(
+                onPressed: () async {
+                  await toggleAd();
+                 await Transitions.slideTransition(
                     context: context,
                     pageBuilder: () => FavouritesPage(),
                   );
@@ -50,8 +54,9 @@ class RootWindowPortrait extends StatelessWidget {
                 icon: Icon(
                   Icons.search,
                 ),
-                onPressed: () {
-                  Transitions.slideTransition(
+                onPressed: () async {
+                  await toggleAd();
+                 await Transitions.slideTransition(
                     context: context,
                     pageBuilder: () => SearchPage(),
                   );

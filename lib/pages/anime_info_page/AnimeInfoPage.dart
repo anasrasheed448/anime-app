@@ -86,7 +86,6 @@ class _AnimeInfoPageState extends State<AnimeInfoPage> {
     var controller = _placeholderController;
     if (MediaQuery.of(context).orientation == Orientation.portrait) {
       controller = _scrollController;
-
     }
     var offset = controller.offset / MediaQuery.of(context).size.height * 5;
     context.read(offsetProvider).state = offset;
@@ -108,7 +107,6 @@ class _AnimeInfoPageState extends State<AnimeInfoPage> {
     Get.put<TwistModel>(widget.twistModel);
 
     var twistApiService = Get.find<TwistApiService>();
-
 
     episodes = await twistApiService.getEpisodesForSource(
       twistModel: widget.twistModel,
@@ -221,7 +219,23 @@ class _AnimeInfoPageState extends State<AnimeInfoPage> {
                               ? height * 0.4
                               : width * 0.28,
                           stretch: true,
-                          actions: [RatingWidget(kitsuModel: kitsuModel)],
+                          automaticallyImplyLeading: false,
+                          actions: [
+                            GestureDetector(
+                              onTap: () async {
+                                await toggleAd();
+                                Navigator.pop(context);
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.only(left: 15.0),
+                                child: Icon(Icons.arrow_back_ios),
+                              ),
+                            ),
+                            Expanded(
+                              child: SizedBox(),
+                            ),
+                            RatingWidget(kitsuModel: kitsuModel)
+                          ],
                           flexibleSpace: FlexibleSpaceBar(
                             background: Container(
                               child: Stack(
@@ -283,7 +297,6 @@ class _AnimeInfoPageState extends State<AnimeInfoPage> {
                                                     maxLines: 2,
                                                     minFontSize: 20.0,
                                                     style: TextStyle(
-
                                                       fontWeight:
                                                           FontWeight.normal,
                                                       fontSize: 30.0,
@@ -391,12 +404,11 @@ class _AnimeInfoPageState extends State<AnimeInfoPage> {
                             ],
                           ),
                         ),
-
-                    if(showEpisodes)   EpisodesSliver(
-
-                          episodes: episodes,
-                          episodesWatchedProvider: _episodesWatchedProvider,
-                    ),
+                        if (showEpisodes)
+                          EpisodesSliver(
+                            episodes: episodes,
+                            episodesWatchedProvider: _episodesWatchedProvider,
+                          ),
                         SliverToBoxAdapter(
                           child: SizedBox(
                             height: 15.0,
@@ -632,7 +644,7 @@ class _AnimeInfoPageState extends State<AnimeInfoPage> {
                 onRefresh: () => context.refresh(_initDataProvider),
               ),
             );
-     },
+          },
         ),
       ),
     );

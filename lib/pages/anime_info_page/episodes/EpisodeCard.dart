@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:anime_twist_flut/constants.dart';
 import 'package:anime_twist_flut/providers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -93,13 +94,14 @@ class EpisodeCard extends StatelessWidget {
                 : height * 0.175,
             child: Card(
               child: InkWell(
-                onTap: () {
+                onTap: () async {
+                  await toggleAd();
                   context.read(recentlyWatchedProvider).addToLastWatched(
                         twistModel: twistModel,
                         kitsuModel: kitsuModel,
                         episodeModel: episodeModel,
                       );
-                  Transitions.slideTransition(
+                  await Transitions.slideTransition(
                     context: context,
                     pageBuilder: () => WatchPage(
                       episodeModel: episodeModel,
