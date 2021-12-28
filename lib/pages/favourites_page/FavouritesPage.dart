@@ -48,11 +48,30 @@ class _FavouritesPageState extends State<FavouritesPage>
 
         if (favouritedAnimes.isEmpty) {
           return SlideInAnimation(
-            child: Center(
-              child: Icon(
-                FontAwesomeIcons.heartBroken,
-                size: 75,
+            child: Column(
+              children: [
+                SizedBox(height: 50,),
+                Align(
+                  alignment: Alignment.topLeft,
+                  child:    GestureDetector(
+                onTap: () async {
+                  await toggleAd();
+                  Navigator.pop(context);
+                },
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 15.0),
+                  child: Icon(Icons.arrow_back_ios),
+                ),
               ),
+                ),
+                SizedBox(height: MediaQuery.of(context).size.height*0.33),
+                Center(
+                  child: Icon(
+                    FontAwesomeIcons.heartBroken,
+                    size: 75,
+                  ),
+                ),
+              ],
             ),
           );
         }
