@@ -1,0 +1,64 @@
+name: anime_twist_flut
+description: A new Flutter project.
+
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
+
+version: 7.0.0+1
+
+environment:
+  sdk: ">=2.9.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_android_pip:
+    git:
+      url: https://github.com/simrat39/flutter_android_pip
+  simple_color_picker:
+    git:
+      url: https://github.com/simrat39/simple_color_picker
+  video_player_header:
+    git:
+      url: https://github.com/simrat39/videoPlayerWithHeader
+  android_intent: ^2.0.0
+  auto_size_text: ^2.1.0
+  cached_network_image: ^2.5.0
+  device_apps: ^1.2.0
+  edit_distance: ^0.4.1
+  encrypt: ^4.1.0
+  fl_chart: ^0.20.1
+  flutter_riverpod: ^0.13.1
+  font_awesome_flutter: ^8.10.0
+  get_it: ^6.0.0
+  get: ^3.26.0
+  hive: ^1.4.4+1
+  hive_flutter: ^0.3.1
+  http: ^0.12.2
+  import_sorter: ^4.2.2
+  package_info: ^2.0.0
+  path_provider: ^1.6.22
+  pedantic: ^1.10.0
+  shared_preferences: ^0.5.12+2
+  shelf: ">=0.5.2 <0.8.0"
+  shimmer: ^1.1.2
+  smooth_page_indicator: ^0.2.0
+  supercharged: ^2.0.0
+  tuple: ^1.0.3
+  uni_links: ^0.4.0
+  url_launcher: ^6.0.2
+  wakelock: ^0.5.0+2
+  web_socket_channel: ^1.1.0
+  firebase_core: ^0.4.0
+  google_mobile_ads: ^0.13.6
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  build_runner: ^1.10.4
+  hive_generator: ^0.8.1
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/icon.png
+    - assets/discover_placeholder.png
