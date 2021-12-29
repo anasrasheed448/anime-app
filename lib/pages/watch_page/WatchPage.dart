@@ -12,6 +12,7 @@ import 'package:anime_twist_flut/pages/watch_page/LaunchExternalPlayerButton.dar
 import 'package:anime_twist_flut/pages/watch_page/shelf_proxy.dart';
 import 'package:anime_twist_flut/utils/GetUtils.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -334,6 +335,10 @@ class _WatchPageState extends State<WatchPage> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     var containerHeight =
         MediaQuery.of(context).orientation == Orientation.portrait
             ? MediaQuery.of(context).size.height * 0.05

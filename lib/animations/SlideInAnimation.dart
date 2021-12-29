@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -46,6 +47,10 @@ class _SlideInAnimationState extends State<SlideInAnimation>
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return AnimatedBuilder(
       animation: axisAnimation,
       builder: (context, child) => Transform.translate(

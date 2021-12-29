@@ -1,5 +1,6 @@
 import 'package:anime_twist_flut/models/kitsu/KitsuModel.dart';
 import 'package:anime_twist_flut/pages/anime_info_page/RatingGraph.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 
 class RatingWidget extends StatelessWidget {
@@ -9,6 +10,10 @@ class RatingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return Center(
       child: Container(
         margin: EdgeInsets.only(

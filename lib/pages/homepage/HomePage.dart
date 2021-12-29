@@ -7,6 +7,7 @@ import 'package:anime_twist_flut/pages/homepage/HomePageLandscape.dart';
 import 'package:anime_twist_flut/pages/homepage/HomePagePortrait.dart';
 import 'package:anime_twist_flut/services/kitsu_service/KitsuApiService.dart';
 import 'package:anime_twist_flut/widgets/device_orientation_builder.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -87,14 +88,14 @@ class _HomePageState extends State<HomePage>
         (ref) async => await KitsuApiService.getTopMovies(),
       ),
     ),
-     if (_isAdloaded)
-          Container(
-            width: myBanner.size.width.toDouble(),
-            height: myBanner.size.height.toDouble(),
-            child: AdWidget(
-              ad: myBanner,
-            ),
-          ),
+    if (_isAdloaded)
+      Container(
+        width: myBanner.size.width.toDouble(),
+        height: myBanner.size.height.toDouble(),
+        child: AdWidget(
+          ad: myBanner,
+        ),
+      ),
     SubCategoryText(
       text: 'Popular Anime',
       padding: EdgeInsets.symmetric(
@@ -151,36 +152,40 @@ class _HomePageState extends State<HomePage>
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     super.build(context);
     return DeviceOrientationBuilder(
       portrait: HomePagePortrait(widgets: [
-       SubCategoryText(
-      text: 'Top Airing',
-      padding: EdgeInsets.symmetric(
-        horizontal: 16.0,
-        vertical: 12.0,
-      ),
-    ),
-    KitsuAnimeRow(
-      futureProvider: FutureProvider<
-          Tuple2<Map<TwistModel, KitsuModel>, KitsuAnimeListModel>>(
-        (ref) async => await KitsuApiService.getFanFavourites(),
-      ),
-    ),
-    SubCategoryText(
-      text: 'Top Anime Movies',
-      padding: EdgeInsets.symmetric(
-        horizontal: 16.0,
-        vertical: 10.0,
-      ),
-    ),
-    KitsuAnimeRow(
-      futureProvider: FutureProvider<
-          Tuple2<Map<TwistModel, KitsuModel>, KitsuAnimeListModel>>(
-        (ref) async => await KitsuApiService.getTopMovies(),
-      ),
-    ),
-     if (_isAdloaded)
+        SubCategoryText(
+          text: 'Top Airing',
+          padding: EdgeInsets.symmetric(
+            horizontal: 16.0,
+            vertical: 12.0,
+          ),
+        ),
+        KitsuAnimeRow(
+          futureProvider: FutureProvider<
+              Tuple2<Map<TwistModel, KitsuModel>, KitsuAnimeListModel>>(
+            (ref) async => await KitsuApiService.getFanFavourites(),
+          ),
+        ),
+        SubCategoryText(
+          text: 'Top Anime Movies',
+          padding: EdgeInsets.symmetric(
+            horizontal: 16.0,
+            vertical: 10.0,
+          ),
+        ),
+        KitsuAnimeRow(
+          futureProvider: FutureProvider<
+              Tuple2<Map<TwistModel, KitsuModel>, KitsuAnimeListModel>>(
+            (ref) async => await KitsuApiService.getTopMovies(),
+          ),
+        ),
+        if (_isAdloaded)
           Container(
             width: myBanner.size.width.toDouble(),
             height: myBanner.size.height.toDouble(),
@@ -188,88 +193,87 @@ class _HomePageState extends State<HomePage>
               ad: myBanner,
             ),
           ),
-    SubCategoryText(
-      text: 'Popular Anime',
-      padding: EdgeInsets.symmetric(
-        horizontal: 16.0,
-        vertical: 10.0,
-      ),
-    ),
-    KitsuAnimeRow(
-      futureProvider: FutureProvider<
-          Tuple2<Map<TwistModel, KitsuModel>, KitsuAnimeListModel>>(
-        (ref) async => await KitsuApiService.getAllTimePopularAnimes(),
-      ),
-    ),
-    Padding(
-      padding: EdgeInsets.only(
-        top: 12.0,
-        left: 15.0,
-        right: 15.0,
-        bottom: 8.0,
-      ),
-    ),
-    // View all anime card
-    Padding(
-      padding: EdgeInsets.only(
-        left: 15.0,
-        right: 15.0,
-        bottom: 8.0,
-      ),
-      child: ViewAllAnimeCard(),
-    ),
-    Padding(
-      padding: EdgeInsets.only(
-        left: 15.0,
-        right: 15.0,
-        bottom: 8.0,
-      ), /*
+        SubCategoryText(
+          text: 'Popular Anime',
+          padding: EdgeInsets.symmetric(
+            horizontal: 16.0,
+            vertical: 10.0,
+          ),
+        ),
+        KitsuAnimeRow(
+          futureProvider: FutureProvider<
+              Tuple2<Map<TwistModel, KitsuModel>, KitsuAnimeListModel>>(
+            (ref) async => await KitsuApiService.getAllTimePopularAnimes(),
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.only(
+            top: 12.0,
+            left: 15.0,
+            right: 15.0,
+            bottom: 8.0,
+          ),
+        ),
+        // View all anime card
+        Padding(
+          padding: EdgeInsets.only(
+            left: 15.0,
+            right: 15.0,
+            bottom: 8.0,
+          ),
+          child: ViewAllAnimeCard(),
+        ),
+        Padding(
+          padding: EdgeInsets.only(
+            left: 15.0,
+            right: 15.0,
+            bottom: 8.0,
+          ), /*
       child: Container(
         height: 80,
         width: double.infinity,
         color: Colors.red,
 
       ),*/
-    ),
+        ),
 
-    Padding(
-      padding: EdgeInsets.only(
-        left: 15.0,
-        right: 15.0,
-        bottom: 8.0,
-      ),
-    ),
-    // Message Of The Day Card
-  ]
-       
-      ),
-      landscape: HomePageLandscape(widgets: [ SubCategoryText(
-      text: 'Top Airing',
-      padding: EdgeInsets.symmetric(
-        horizontal: 16.0,
-        vertical: 12.0,
-      ),
-    ),
-    KitsuAnimeRow(
-      futureProvider: FutureProvider<
-          Tuple2<Map<TwistModel, KitsuModel>, KitsuAnimeListModel>>(
-        (ref) async => await KitsuApiService.getFanFavourites(),
-      ),
-    ),
-    SubCategoryText(
-      text: 'Top Anime Movies',
-      padding: EdgeInsets.symmetric(
-        horizontal: 16.0,
-        vertical: 10.0,
-      ),
-    ),
-    KitsuAnimeRow(
-      futureProvider: FutureProvider<
-          Tuple2<Map<TwistModel, KitsuModel>, KitsuAnimeListModel>>(
-        (ref) async => await KitsuApiService.getTopMovies(),
-      ),
-    ),
-     if (_isAdloaded)
+        Padding(
+          padding: EdgeInsets.only(
+            left: 15.0,
+            right: 15.0,
+            bottom: 8.0,
+          ),
+        ),
+        // Message Of The Day Card
+      ]),
+      landscape: HomePageLandscape(widgets: [
+        SubCategoryText(
+          text: 'Top Airing',
+          padding: EdgeInsets.symmetric(
+            horizontal: 16.0,
+            vertical: 12.0,
+          ),
+        ),
+        KitsuAnimeRow(
+          futureProvider: FutureProvider<
+              Tuple2<Map<TwistModel, KitsuModel>, KitsuAnimeListModel>>(
+            (ref) async => await KitsuApiService.getFanFavourites(),
+          ),
+        ),
+        SubCategoryText(
+          text: 'Top Anime Movies',
+          padding: EdgeInsets.symmetric(
+            horizontal: 16.0,
+            vertical: 10.0,
+          ),
+        ),
+        KitsuAnimeRow(
+          futureProvider: FutureProvider<
+              Tuple2<Map<TwistModel, KitsuModel>, KitsuAnimeListModel>>(
+            (ref) async => await KitsuApiService.getTopMovies(),
+          ),
+        ),
+        if (_isAdloaded)
           Container(
             width: myBanner.size.width.toDouble(),
             height: myBanner.size.height.toDouble(),
@@ -277,59 +281,59 @@ class _HomePageState extends State<HomePage>
               ad: myBanner,
             ),
           ),
-    SubCategoryText(
-      text: 'Popular Anime',
-      padding: EdgeInsets.symmetric(
-        horizontal: 16.0,
-        vertical: 10.0,
-      ),
-    ),
-    KitsuAnimeRow(
-      futureProvider: FutureProvider<
-          Tuple2<Map<TwistModel, KitsuModel>, KitsuAnimeListModel>>(
-        (ref) async => await KitsuApiService.getAllTimePopularAnimes(),
-      ),
-    ),
-    Padding(
-      padding: EdgeInsets.only(
-        top: 12.0,
-        left: 15.0,
-        right: 15.0,
-        bottom: 8.0,
-      ),
-    ),
-    // View all anime card
-    Padding(
-      padding: EdgeInsets.only(
-        left: 15.0,
-        right: 15.0,
-        bottom: 8.0,
-      ),
-      child: ViewAllAnimeCard(),
-    ),
-    Padding(
-      padding: EdgeInsets.only(
-        left: 15.0,
-        right: 15.0,
-        bottom: 8.0,
-      ), /*
+        SubCategoryText(
+          text: 'Popular Anime',
+          padding: EdgeInsets.symmetric(
+            horizontal: 16.0,
+            vertical: 10.0,
+          ),
+        ),
+        KitsuAnimeRow(
+          futureProvider: FutureProvider<
+              Tuple2<Map<TwistModel, KitsuModel>, KitsuAnimeListModel>>(
+            (ref) async => await KitsuApiService.getAllTimePopularAnimes(),
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.only(
+            top: 12.0,
+            left: 15.0,
+            right: 15.0,
+            bottom: 8.0,
+          ),
+        ),
+        // View all anime card
+        Padding(
+          padding: EdgeInsets.only(
+            left: 15.0,
+            right: 15.0,
+            bottom: 8.0,
+          ),
+          child: ViewAllAnimeCard(),
+        ),
+        Padding(
+          padding: EdgeInsets.only(
+            left: 15.0,
+            right: 15.0,
+            bottom: 8.0,
+          ), /*
       child: Container(
         height: 80,
         width: double.infinity,
         color: Colors.red,
 
       ),*/
-    ),
+        ),
 
-    Padding(
-      padding: EdgeInsets.only(
-        left: 15.0,
-        right: 15.0,
-        bottom: 8.0,
-      ),
-    ),
-    // Message Of The Day Card
-  ]),
+        Padding(
+          padding: EdgeInsets.only(
+            left: 15.0,
+            right: 15.0,
+            bottom: 8.0,
+          ),
+        ),
+        // Message Of The Day Card
+      ]),
     );
   }
 

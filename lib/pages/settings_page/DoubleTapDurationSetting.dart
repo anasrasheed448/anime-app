@@ -1,5 +1,6 @@
 import 'package:anime_twist_flut/providers.dart';
 import 'package:anime_twist_flut/providers/settings/DoubleTapDuration.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -14,6 +15,10 @@ class DoubleTapDurationSetting extends StatefulWidget {
 class _DoubleTapDurationSettingState extends State<DoubleTapDurationSetting> {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return Consumer(
       builder: (context, watch, child) {
         var provider = watch(doubleTapDurationProvider);

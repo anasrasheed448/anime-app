@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -12,6 +13,10 @@ class AboutAppSetting extends StatefulWidget {
 class _AboutAppSettingState extends State<AboutAppSetting> {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return ListTile(
       title: Text('About App'),
       subtitle: Text('Learn more!'),

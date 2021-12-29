@@ -4,6 +4,7 @@ import 'package:anime_twist_flut/pages/homepage/AppbarText.dart';
 import 'package:anime_twist_flut/pages/search_page/SearchPage.dart';
 import 'package:anime_twist_flut/pages/discover_page/DiscoverPage.dart';
 import 'package:anime_twist_flut/pages/settings_page/SettingsPage.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:anime_twist_flut/pages/favourites_page/FavouritesPage.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -26,6 +27,10 @@ class RootWindowPortrait extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return Consumer(
       builder: (context, watch, child) {
         var prov = watch(indexProvider);
@@ -35,15 +40,13 @@ class RootWindowPortrait extends StatelessWidget {
             title: AppbarText(),
             actions: [
               IconButton(
-                
                 color: Colors.white30,
                 icon: Icon(
                   Icons.favorite,
                 ),
-
                 onPressed: () async {
                   await toggleAd();
-                 await Transitions.slideTransition(
+                  await Transitions.slideTransition(
                     context: context,
                     pageBuilder: () => FavouritesPage(),
                   );
@@ -56,17 +59,15 @@ class RootWindowPortrait extends StatelessWidget {
                 ),
                 onPressed: () async {
                   await toggleAd();
-                 await Transitions.slideTransition(
+                  await Transitions.slideTransition(
                     context: context,
                     pageBuilder: () => SearchPage(),
                   );
                 },
               ),
-      
               IconButton(
                 color: Colors.white30,
                 icon: Icon(
-
                   Icons.settings,
                 ),
                 onPressed: () {
@@ -77,7 +78,8 @@ class RootWindowPortrait extends StatelessWidget {
                 },
               ),
             ],
-          ),/*
+          ),
+          /*
           bottomNavigationBar: BottomNavigationBar(
             currentIndex: prov.state,
             onTap: (index) {

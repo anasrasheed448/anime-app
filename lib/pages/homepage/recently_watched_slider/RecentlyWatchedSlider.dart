@@ -2,6 +2,7 @@
 import 'package:anime_twist_flut/providers.dart';
 import 'package:anime_twist_flut/pages/homepage/recently_watched_slider/DefaultCard.dart';
 import 'package:anime_twist_flut/pages/homepage/recently_watched_slider/RecentlyWatchedText.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -36,6 +37,10 @@ class _RecentlyWatchedSliderState extends State<RecentlyWatchedSlider> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     var orientation = MediaQuery.of(context).orientation;

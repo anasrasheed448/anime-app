@@ -17,10 +17,9 @@ import 'dart:io' show Platform;
 
 import 'dart:io';
 
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-
-
 
 // You can also test with your own ad unit IDs by registering your device as a
 // test device. Check the logs for your device's ID value.
@@ -159,7 +158,7 @@ class _MyApp2State extends State<MyApp2> {
     // }
 
     final BannerAd banner = BannerAd(
-      size:  AdSize.banner,
+      size: AdSize.banner,
       request: request,
       adUnitId: Platform.isAndroid
           ? 'ca-app-pub-3940256099942544/6300978111'
@@ -192,6 +191,10 @@ class _MyApp2State extends State<MyApp2> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return MaterialApp(
       home: Builder(builder: (BuildContext context) {
         if (!_loadingAnchoredBanner) {
@@ -249,8 +252,6 @@ class _MyApp2State extends State<MyApp2> {
   }
 }
 
-
-
 /// This example demonstrates inline ads in a list view, where the ad objects
 /// live for the lifetime of this widget.
 class ReusableInlineExample extends StatefulWidget {
@@ -270,48 +271,48 @@ class _ReusableInlineExampleState extends State<ReusableInlineExample> {
 
   @override
   Widget build(BuildContext context) => Center(
-    child: Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      child: ListView.separated(
-        itemCount: 20,
-        separatorBuilder: (BuildContext context, int index) {
-          return Container(
-            height: 40,
-          );
-        },
-        itemBuilder: (BuildContext context, int index) {
-          final BannerAd bannerAd = _bannerAd;
-          if (index == 5 && _bannerAdIsLoaded && bannerAd != null) {
-            return Container(
-                height: bannerAd.size.height.toDouble(),
-                width: bannerAd.size.width.toDouble(),
-                child: AdWidget(ad: bannerAd));
-          }
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: ListView.separated(
+            itemCount: 20,
+            separatorBuilder: (BuildContext context, int index) {
+              return Container(
+                height: 40,
+              );
+            },
+            itemBuilder: (BuildContext context, int index) {
+              final BannerAd bannerAd = _bannerAd;
+              if (index == 5 && _bannerAdIsLoaded && bannerAd != null) {
+                return Container(
+                    height: bannerAd.size.height.toDouble(),
+                    width: bannerAd.size.width.toDouble(),
+                    child: AdWidget(ad: bannerAd));
+              }
 
-          final AdManagerBannerAd adManagerBannerAd = _adManagerBannerAd;
-          if (index == 10 &&
-              _adManagerBannerAdIsLoaded &&
-              adManagerBannerAd != null) {
-            return Container(
-                height: adManagerBannerAd.sizes[0].height.toDouble(),
-                width: adManagerBannerAd.sizes[0].width.toDouble(),
-                child: AdWidget(ad: _adManagerBannerAd));
-          }
+              final AdManagerBannerAd adManagerBannerAd = _adManagerBannerAd;
+              if (index == 10 &&
+                  _adManagerBannerAdIsLoaded &&
+                  adManagerBannerAd != null) {
+                return Container(
+                    height: adManagerBannerAd.sizes[0].height.toDouble(),
+                    width: adManagerBannerAd.sizes[0].width.toDouble(),
+                    child: AdWidget(ad: _adManagerBannerAd));
+              }
 
-          final NativeAd nativeAd = _nativeAd;
-          if (index == 15 && _nativeAdIsLoaded && nativeAd != null) {
-            return Container(
-                width: 250, height: 350, child: AdWidget(ad: nativeAd));
-          }
+              final NativeAd nativeAd = _nativeAd;
+              if (index == 15 && _nativeAdIsLoaded && nativeAd != null) {
+                return Container(
+                    width: 250, height: 350, child: AdWidget(ad: nativeAd));
+              }
 
-          return Text(
-            "adasd adasdasdasd",
-            style: TextStyle(fontSize: 24),
-          );
-        },
-      ),
-    ),
-  );
+              return Text(
+                "adasd adasdasdasd",
+                style: TextStyle(fontSize: 24),
+              );
+            },
+          ),
+        ),
+      );
 
   @override
   void didChangeDependencies() {
@@ -388,4 +389,5 @@ class _ReusableInlineExampleState extends State<ReusableInlineExample> {
     _bannerAd?.dispose();
     _adManagerBannerAd?.dispose();
     _nativeAd?.dispose();
-  }}
+  }
+}

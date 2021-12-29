@@ -3,6 +3,7 @@ import 'package:anime_twist_flut/constants.dart';
 import 'package:anime_twist_flut/pages/all_anime_page/AllAnimePage.dart';
 import 'package:anime_twist_flut/widgets/custom_shimmer.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -11,6 +12,10 @@ class DefaultCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     var orientation = MediaQuery.of(context).orientation;

@@ -8,6 +8,7 @@ import 'package:anime_twist_flut/pages/discover_page/StatusSelector.dart';
 import 'package:anime_twist_flut/pages/discover_page/SubtypeSelecter.dart';
 import 'package:anime_twist_flut/providers/KitsuDiscoverURLProvider.dart';
 import 'package:anime_twist_flut/services/kitsu_service/KitsuAnimeListApiService.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tuple/tuple.dart';
@@ -98,6 +99,10 @@ class _DiscoverPageState extends State<DiscoverPage>
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     super.build(context);
     var isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
 

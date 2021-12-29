@@ -12,6 +12,7 @@ import 'package:anime_twist_flut/services/twist_service/TwistApiService.dart';
 import 'package:anime_twist_flut/theme.dart';
 import 'package:anime_twist_flut/utils/GetUtils.dart';
 import 'package:anime_twist_flut/widgets/InitialLoadingScreen.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -85,6 +86,10 @@ class _MainWidgetState extends State<MainWidget>
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return Consumer(
       builder: (context, watch, child) {
         var accentColor = watch(accentProvider).value;

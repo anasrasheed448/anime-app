@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 
 class AppbarText extends StatelessWidget {
@@ -7,6 +8,10 @@ class AppbarText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return RichText(
       text: TextSpan(
         style: TextStyle(

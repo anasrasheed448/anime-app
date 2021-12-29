@@ -1,5 +1,6 @@
 import 'package:anime_twist_flut/animations/TwistLoadingWidget.dart';
 import 'package:anime_twist_flut/services/AppUpdateService.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -27,6 +28,10 @@ class _CheckUpdateSettingState extends State<CheckUpdateSetting> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return ListTile(
       title: Text('Check for updates'),
       subtitle: Text('Get the latest and the greatest'),

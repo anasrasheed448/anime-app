@@ -2,6 +2,7 @@
 import 'package:anime_twist_flut/providers.dart';
 import 'package:anime_twist_flut/pages/discover_page/DiscoverAnimeTile.dart';
 import 'package:anime_twist_flut/pages/discover_page/SubCategoryText.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -20,6 +21,10 @@ class _ToWatchRowState extends State<ToWatchRow> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return Consumer(
       builder: (context, watch, child) {
         final provider = watch(toWatchProvider);

@@ -13,6 +13,7 @@ import 'package:anime_twist_flut/services/twist_service/TwistApiService.dart';
 import 'package:anime_twist_flut/widgets/custom_shimmer.dart';
 import 'package:anime_twist_flut/widgets/device_orientation_builder.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -216,6 +217,10 @@ class _AnimeInfoPageState extends State<AnimeInfoPage> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     var orientation = MediaQuery.of(context).orientation;
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;

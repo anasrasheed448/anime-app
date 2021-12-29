@@ -1,5 +1,6 @@
 import 'package:anime_twist_flut/providers/settings/CustomSettingProvider.dart';
 import 'package:anime_twist_flut/services/SharedPreferencesManager.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 
 class AccentColorProvider extends CustomSettingProvider<Color> {

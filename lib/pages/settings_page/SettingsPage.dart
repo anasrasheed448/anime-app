@@ -12,6 +12,7 @@ import 'package:anime_twist_flut/pages/settings_page/ResetRecentlyWatchedSetting
 import 'package:anime_twist_flut/pages/settings_page/ResetToWatchSetting.dart';
 import 'package:anime_twist_flut/pages/settings_page/SettingsCategory.dart';
 import 'package:anime_twist_flut/pages/settings_page/ZoomFactorSetting.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -38,11 +39,14 @@ class _SettingsPageState extends State<SettingsPage> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return Scaffold(
       appBar: AppBar(
         primary: true,
         title: AppbarText(),
-
       ),
       body: Scrollbar(
         controller: scrollController,

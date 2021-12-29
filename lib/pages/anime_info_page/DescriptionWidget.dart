@@ -1,6 +1,7 @@
 import 'package:anime_twist_flut/models/kitsu/KitsuModel.dart';
 import 'package:anime_twist_flut/models/TwistModel.dart';
 import 'package:anime_twist_flut/widgets/device_orientation_builder.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:supercharged/supercharged.dart';
 
@@ -80,6 +81,10 @@ class _DescriptionWidgetState extends State<DescriptionWidget>
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     if (widget.kitsuModel == null) return Container();
     return Container(
       margin: EdgeInsets.only(

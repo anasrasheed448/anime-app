@@ -3,6 +3,7 @@ import 'dart:async';
 
 // Flutter imports:
 import 'package:anime_twist_flut/widgets/device_orientation_builder.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -48,6 +49,10 @@ class _GenericDonationSheetState extends State<GenericDonationSheet> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     return Container(

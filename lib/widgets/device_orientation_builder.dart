@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 
 class DeviceOrientationBuilder extends StatelessWidget {
@@ -12,6 +13,10 @@ class DeviceOrientationBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     if (MediaQuery.of(context).orientation == Orientation.portrait) {
       return portrait;
     }

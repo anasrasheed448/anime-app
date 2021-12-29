@@ -1,4 +1,5 @@
 import 'package:anime_twist_flut/models/kitsu/RatingFrequency.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 
@@ -25,6 +26,10 @@ class RatingGraph extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     var size = MediaQuery.of(context).size;
     var orientation = MediaQuery.of(context).orientation;
 

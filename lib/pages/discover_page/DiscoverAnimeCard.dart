@@ -3,6 +3,7 @@ import 'package:anime_twist_flut/models/TwistModel.dart';
 import 'package:anime_twist_flut/models/kitsu/KitsuModel.dart';
 import 'package:anime_twist_flut/pages/anime_info_page/AnimeInfoPage.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 
 class DiscoverAnimeCard extends StatelessWidget {
@@ -17,6 +18,10 @@ class DiscoverAnimeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return Card(
       child: Stack(
         children: [

@@ -11,6 +11,7 @@ import 'package:anime_twist_flut/pages/settings_page/SettingsPage.dart';
 import 'package:anime_twist_flut/services/AppUpdateService.dart';
 import 'package:anime_twist_flut/services/twist_service/TwistApiService.dart';
 import 'package:anime_twist_flut/widgets/device_orientation_builder.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -112,6 +113,10 @@ class _RootWindowState extends State<RootWindow> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return DeviceOrientationBuilder(
       portrait: RootWindowPortrait(
         indexProvider: indexProvider,

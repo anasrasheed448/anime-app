@@ -1,4 +1,5 @@
 import 'package:anime_twist_flut/pages/homepage/AppbarText.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 
 class ErrorPage extends StatefulWidget {
@@ -22,6 +23,10 @@ class ErrorPage extends StatefulWidget {
 class _ErrorPageState extends State<ErrorPage> {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return Scaffold(
       appBar: AppBar(
         title: AppbarText(custom: 'error'),

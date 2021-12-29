@@ -6,6 +6,7 @@ import 'package:anime_twist_flut/models/RecentlyWatchedModel.dart';
 import 'package:anime_twist_flut/widgets/custom_shimmer.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -48,6 +49,10 @@ class _RecentlyWatchedCardState extends State<RecentlyWatchedCard> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return Container(
       child: Stack(
         alignment: Alignment.center,

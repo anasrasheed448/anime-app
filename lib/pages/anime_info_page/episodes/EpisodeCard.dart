@@ -2,6 +2,7 @@
 import 'package:anime_twist_flut/constants.dart';
 import 'package:anime_twist_flut/providers.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -34,6 +35,10 @@ class EpisodeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
     var orientation = MediaQuery.of(context).orientation;

@@ -1,5 +1,6 @@
 // Flutter imports:
 import 'package:anime_twist_flut/pages/homepage/donation_card/GenericDonationSheet.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -29,6 +30,10 @@ class _DonationCardState extends State<DonationCard>
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     super.build(context);
     return Consumer(builder: (context, watch, child) {
       return watch(_dataInitProvider).when(

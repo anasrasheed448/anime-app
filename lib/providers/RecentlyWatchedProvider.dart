@@ -1,6 +1,7 @@
 // Flutter imports:
 import 'package:anime_twist_flut/models/RecentlyWatchedModel.dart';
 import 'package:anime_twist_flut/models/kitsu/RatingFrequency.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:

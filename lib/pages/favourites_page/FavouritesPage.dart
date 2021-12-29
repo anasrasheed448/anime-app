@@ -3,9 +3,11 @@ import 'package:anime_twist_flut/providers.dart';
 import 'package:anime_twist_flut/pages/favourites_page/FavouritedAnimeTile.dart';
 import 'package:anime_twist_flut/services/twist_service/TwistApiService.dart';
 import 'package:anime_twist_flut/utils/GetUtils.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:anime_twist_flut/pages/homepage/AppbarText.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -45,7 +47,7 @@ class _FavouritesPageState extends State<FavouritesPage>
         onAdFailedToLoad: (ad, error) => print('failde'),
       ),
     );
- myBanner2 = BannerAd(
+    myBanner2 = BannerAd(
       adUnitId: 'ca-app-pub-3940256099942544/6300978111',
       size: AdSize.banner,
       request: AdRequest(),
@@ -61,7 +63,6 @@ class _FavouritesPageState extends State<FavouritesPage>
     );
     myBanner.load();
     myBanner2.load();
-
   }
 
   @override
@@ -82,6 +83,10 @@ class _FavouritesPageState extends State<FavouritesPage>
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     var isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
     var width = MediaQuery.of(context).size.width;
 
@@ -171,17 +176,17 @@ class _FavouritesPageState extends State<FavouritesPage>
                             child: CustomScrollView(
                               controller: _scrollController,
                               slivers: [
-                                 // SizedBox(height: 20),
-                if (_isAdloaded)
-                  SliverToBoxAdapter(
-                    child: Container(
-                      width: myBanner.size.width.toDouble(),
-                      height: myBanner.size.height.toDouble(),
-                      child: AdWidget(
-                        ad: myBanner,
-                      ),
-                    ),
-                  ),
+                                // SizedBox(height: 20),
+                                if (_isAdloaded)
+                                  SliverToBoxAdapter(
+                                    child: Container(
+                                      width: myBanner.size.width.toDouble(),
+                                      height: myBanner.size.height.toDouble(),
+                                      child: AdWidget(
+                                        ad: myBanner,
+                                      ),
+                                    ),
+                                  ),
                                 SliverPadding(
                                   padding: EdgeInsets.all(15.0),
                                   sliver: SliverGrid(

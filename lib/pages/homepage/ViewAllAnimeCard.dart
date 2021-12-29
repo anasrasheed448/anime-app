@@ -1,5 +1,6 @@
 // Flutter imports:
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 
 // Project imports:
@@ -9,6 +10,10 @@ import '../../pages/all_anime_page/AllAnimePage.dart';
 class ViewAllAnimeCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return Card(
       child: InkWell(
         borderRadius: BorderRadius.circular(8.0),

@@ -1,4 +1,5 @@
 import 'package:anime_twist_flut/providers.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -71,6 +72,10 @@ class __ZoomOnTrueState extends State<__ZoomOnTrue>
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       if (_hasFocus) {
         zoom();

@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -19,6 +20,10 @@ class SearchPageInputBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return RawKeyboardListener(
       focusNode: textFieldNode,
       onKey: (event) {

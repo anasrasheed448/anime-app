@@ -1,6 +1,7 @@
 // Flutter imports:
 import 'package:anime_twist_flut/pages/homepage/AppbarText.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -22,6 +23,10 @@ class _AllAnimePageState extends State<AllAnimePage> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return WillPopScope(
       onWillPop: () async {
         // _previousScrollOffset = _controller.offset;

@@ -1,6 +1,7 @@
 import 'package:anime_twist_flut/providers.dart';
 import 'package:anime_twist_flut/models/kitsu/KitsuModel.dart';
 import 'package:anime_twist_flut/models/TwistModel.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -17,6 +18,10 @@ class FavouriteButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     var accentColor = Theme.of(context).accentColor;
     var side = 55;
 

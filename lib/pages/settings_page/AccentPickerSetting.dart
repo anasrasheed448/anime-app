@@ -1,4 +1,5 @@
 import 'package:anime_twist_flut/providers.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:simple_color_picker/simple_color_picker.dart';
@@ -13,6 +14,10 @@ class AccentPickerSetting extends StatefulWidget {
 class _AccentPickerSettingState extends State<AccentPickerSetting> {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return Consumer(
       builder: (context, watch, child) {
         var provider = watch(accentProvider);

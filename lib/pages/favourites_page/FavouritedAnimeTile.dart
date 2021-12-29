@@ -7,6 +7,7 @@ import 'package:anime_twist_flut/models/TwistModel.dart';
 import 'package:anime_twist_flut/pages/anime_info_page/AnimeInfoPage.dart';
 import 'package:anime_twist_flut/widgets/custom_shimmer.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 
@@ -35,6 +36,10 @@ class FavouritedAnimeTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     var color = Theme.of(context).cardColor;
     return ClipRRect(
       borderRadius: BorderRadius.circular(12),
@@ -87,9 +92,9 @@ class FavouritedAnimeTile extends StatelessWidget {
             child: Material(
               color: Colors.transparent,
               child: InkWell(
-                onTap: ()async {
+                onTap: () async {
                   await toggleAd();
-                await  Transitions.slideTransition(
+                  await Transitions.slideTransition(
                     context: context,
                     pageBuilder: () => AnimeInfoPage(
                       twistModel: twistModel,

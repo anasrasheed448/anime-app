@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -31,6 +32,10 @@ class _MOTDCardState extends State<MOTDCard>
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     super.build(context);
     return Consumer(
       builder: (context, watch, child) {
