@@ -19,6 +19,7 @@ import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:anime_twist_flut/utils/GetUtils.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:supercharged/supercharged.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -67,11 +68,33 @@ class _AnimeInfoPageState extends State<AnimeInfoPage> {
   final offsetProvider = StateProvider<double>((ref) {
     return 0.0;
   });
+  static var myBanner;
+  static bool _isAdloaded = false;
+
+  void initBanner() {
+    print('initad');
+    myBanner = BannerAd(
+      adUnitId: 'ca-app-pub-3940256099942544/6300978111',
+      size: AdSize.banner,
+      request: AdRequest(),
+      listener: BannerAdListener(
+        onAdLoaded: (v) {
+          setState(() {
+            _isAdloaded = true;
+          });
+          print('loaded');
+        },
+        onAdFailedToLoad: (ad, error) => print('failde'),
+      ),
+    );
+
+    myBanner.load();
+  }
 
   @override
   void initState() {
     super.initState();
-
+    initBanner();
     _scrollController = ScrollController();
     _placeholderController = ScrollController();
     _scrollController.addListener(() {
@@ -93,6 +116,7 @@ class _AnimeInfoPageState extends State<AnimeInfoPage> {
 
   @override
   void dispose() {
+    myBanner.dispose();
     Get.delete<TwistModel>();
     Get.delete<KitsuModel>();
     Get.delete<ChangeNotifierProvider<EpisodesWatchedProvider>>();
@@ -404,6 +428,16 @@ class _AnimeInfoPageState extends State<AnimeInfoPage> {
                             ],
                           ),
                         ),
+                        if (_isAdloaded)
+                          SliverToBoxAdapter(
+                            child: Container(
+                              width: myBanner.size.width.toDouble(),
+                              height: myBanner.size.height.toDouble(),
+                              child: AdWidget(
+                                ad: myBanner,
+                              ),
+                            ),
+                          ),
                         if (showEpisodes)
                           EpisodesSliver(
                             episodes: episodes,

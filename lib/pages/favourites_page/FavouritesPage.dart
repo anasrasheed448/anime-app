@@ -8,6 +8,7 @@ import 'package:anime_twist_flut/pages/homepage/AppbarText.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 import '../../constants.dart';
 
@@ -23,15 +24,59 @@ class _FavouritesPageState extends State<FavouritesPage>
   TwistApiService twistApiService = Get.find();
   ScrollController _scrollController;
 
+  static var myBanner;
+  static var myBanner2;
+
+  static bool _isAdloaded = false;
+
+  void initBanner() {
+    print('initad');
+    myBanner = BannerAd(
+      adUnitId: 'ca-app-pub-3940256099942544/6300978111',
+      size: AdSize.banner,
+      request: AdRequest(),
+      listener: BannerAdListener(
+        onAdLoaded: (v) {
+          setState(() {
+            _isAdloaded = true;
+          });
+          print('loaded');
+        },
+        onAdFailedToLoad: (ad, error) => print('failde'),
+      ),
+    );
+ myBanner2 = BannerAd(
+      adUnitId: 'ca-app-pub-3940256099942544/6300978111',
+      size: AdSize.banner,
+      request: AdRequest(),
+      listener: BannerAdListener(
+        onAdLoaded: (v) {
+          setState(() {
+            _isAdloaded = true;
+          });
+          print('loaded');
+        },
+        onAdFailedToLoad: (ad, error) => print('failde'),
+      ),
+    );
+    myBanner.load();
+    myBanner2.load();
+
+  }
+
   @override
   void initState() {
     super.initState();
+    initBanner();
     _scrollController = ScrollController();
   }
 
   @override
   void dispose() {
     _scrollController.dispose();
+    myBanner.dispose();
+    myBanner2.dispose();
+
     super.dispose();
   }
 
@@ -50,21 +95,32 @@ class _FavouritesPageState extends State<FavouritesPage>
           return SlideInAnimation(
             child: Column(
               children: [
-                SizedBox(height: 50,),
+                SizedBox(
+                  height: 50,
+                ),
                 Align(
                   alignment: Alignment.topLeft,
-                  child:    GestureDetector(
-                onTap: () async {
-                  await toggleAd();
-                  Navigator.pop(context);
-                },
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 15.0),
-                  child: Icon(Icons.arrow_back_ios),
+                  child: GestureDetector(
+                    onTap: () async {
+                      await toggleAd();
+                      Navigator.pop(context);
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 15.0),
+                      child: Icon(Icons.arrow_back_ios),
+                    ),
+                  ),
                 ),
-              ),
-                ),
-                SizedBox(height: MediaQuery.of(context).size.height*0.33),
+                SizedBox(height: 20),
+                if (_isAdloaded)
+                  Container(
+                    width: myBanner.size.width.toDouble(),
+                    height: myBanner.size.height.toDouble(),
+                    child: AdWidget(
+                      ad: myBanner2,
+                    ),
+                  ),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.33),
                 Center(
                   child: Icon(
                     FontAwesomeIcons.heartBroken,
@@ -78,18 +134,16 @@ class _FavouritesPageState extends State<FavouritesPage>
         return Scaffold(
           appBar: AppBar(
             automaticallyImplyLeading: false,
-            leading: 
-              GestureDetector(
-                onTap: () async {
-                  await toggleAd();
-                  Navigator.pop(context);
-                },
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 15.0),
-                  child: Icon(Icons.arrow_back_ios),
-                ),
+            leading: GestureDetector(
+              onTap: () async {
+                await toggleAd();
+                Navigator.pop(context);
+              },
+              child: Padding(
+                padding: const EdgeInsets.only(left: 15.0),
+                child: Icon(Icons.arrow_back_ios),
               ),
-            
+            ),
             title: AppbarText(
               custom: 'Favourate',
             ),
@@ -117,6 +171,17 @@ class _FavouritesPageState extends State<FavouritesPage>
                             child: CustomScrollView(
                               controller: _scrollController,
                               slivers: [
+                                 // SizedBox(height: 20),
+                if (_isAdloaded)
+                  SliverToBoxAdapter(
+                    child: Container(
+                      width: myBanner.size.width.toDouble(),
+                      height: myBanner.size.height.toDouble(),
+                      child: AdWidget(
+                        ad: myBanner,
+                      ),
+                    ),
+                  ),
                                 SliverPadding(
                                   padding: EdgeInsets.all(15.0),
                                   sliver: SliverGrid(
