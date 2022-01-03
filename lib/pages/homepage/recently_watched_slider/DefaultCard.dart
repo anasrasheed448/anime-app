@@ -12,10 +12,10 @@ class DefaultCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
+    // SystemChrome.setPreferredOrientations([
+    //  DeviceOrientation.portraitUp,
+    //  DeviceOrientation.portraitDown,
+    //]);
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     var orientation = MediaQuery.of(context).orientation;

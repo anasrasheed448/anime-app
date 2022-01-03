@@ -14,10 +14,10 @@ class ZoomFactorSetting extends StatefulWidget {
 class _ZoomFactorSettingState extends State<ZoomFactorSetting> {
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
+    // SystemChrome.setPreferredOrientations([
+    //  DeviceOrientation.portraitUp,
+    //  DeviceOrientation.portraitDown,
+    //]);
     var provider = context.read(zoomFactorProvider);
     return ListTile(
       title: Text('Zoom factor in fill mode'),

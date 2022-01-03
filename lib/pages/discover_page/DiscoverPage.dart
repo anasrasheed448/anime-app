@@ -31,7 +31,10 @@ class _DiscoverPageState extends State<DiscoverPage>
   @override
   void initState() {
     super.initState();
-
+    SystemChrome.setPreferredOrientations([
+     DeviceOrientation.portraitUp,
+     DeviceOrientation.portraitDown,
+    ]);
     scrollController = ScrollController();
     scrollController.addListener(() {
       if (scrollController.position.pixels ==
@@ -99,10 +102,7 @@ class _DiscoverPageState extends State<DiscoverPage>
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
+  
     super.build(context);
     var isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
 

@@ -14,10 +14,10 @@ class PlaybackSpeedSetting extends StatefulWidget {
 class PlaybackSpeedSettingState extends State<PlaybackSpeedSetting> {
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
+    // SystemChrome.setPreferredOrientations([
+    //  DeviceOrientation.portraitUp,
+    //  DeviceOrientation.portraitDown,
+    //]);
     return Consumer(
       builder: (context, watch, child) {
         var speedProv = watch(playbackSpeeedProvider);

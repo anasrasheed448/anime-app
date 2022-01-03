@@ -8,10 +8,10 @@ class HomePagePortrait extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
+    // SystemChrome.setPreferredOrientations([
+    //  DeviceOrientation.portraitUp,
+    //  DeviceOrientation.portraitDown,
+    //]);
     return ListView.builder(
       itemBuilder: (context, index) => widgets.elementAt(index),
       itemCount: widgets.length,

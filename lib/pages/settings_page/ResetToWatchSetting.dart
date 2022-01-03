@@ -20,10 +20,10 @@ class _ResetToWatchSettingState extends State<ResetToWatchSetting> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
+    // SystemChrome.setPreferredOrientations([
+    //  DeviceOrientation.portraitUp,
+    //  DeviceOrientation.portraitDown,
+    //]);
     var provider = context.read(toWatchProvider);
     return ListTile(
       title: Text('Reset To Watch list'),

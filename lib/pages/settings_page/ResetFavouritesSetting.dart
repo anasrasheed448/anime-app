@@ -20,10 +20,10 @@ class _ResetFavouritesSettingState extends State<ResetFavouritesSetting> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
+    // SystemChrome.setPreferredOrientations([
+    //  DeviceOrientation.portraitUp,
+    //  DeviceOrientation.portraitDown,
+    //]);
     var provider = context.read(favouriteAnimeProvider);
     return ListTile(
       title: Text('Reset Favourited animes'),

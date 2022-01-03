@@ -20,10 +20,10 @@ class EpisodesSliver extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
+    // SystemChrome.setPreferredOrientations([
+    //  DeviceOrientation.portraitUp,
+    //  DeviceOrientation.portraitDown,
+    //]);
     var orientation = MediaQuery.of(context).orientation;
     var isPortrait = orientation == Orientation.portrait;
     var width = MediaQuery.of(context).size.width;

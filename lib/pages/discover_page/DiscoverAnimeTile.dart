@@ -27,10 +27,10 @@ class DiscoverAnimeTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
+    // SystemChrome.setPreferredOrientations([
+    //  DeviceOrientation.portraitUp,
+    //  DeviceOrientation.portraitDown,
+    //]);
     var color = Theme.of(context).cardColor;
     return ClipRRect(
       borderRadius: BorderRadius.circular(12),

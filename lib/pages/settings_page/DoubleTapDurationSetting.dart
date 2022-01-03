@@ -15,10 +15,10 @@ class DoubleTapDurationSetting extends StatefulWidget {
 class _DoubleTapDurationSettingState extends State<DoubleTapDurationSetting> {
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
+    // SystemChrome.setPreferredOrientations([
+    //  DeviceOrientation.portraitUp,
+    //  DeviceOrientation.portraitDown,
+    //]);
     return Consumer(
       builder: (context, watch, child) {
         var provider = watch(doubleTapDurationProvider);

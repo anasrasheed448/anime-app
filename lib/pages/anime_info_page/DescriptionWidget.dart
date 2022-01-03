@@ -81,10 +81,10 @@ class _DescriptionWidgetState extends State<DescriptionWidget>
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
+    // SystemChrome.setPreferredOrientations([
+    //  DeviceOrientation.portraitUp,
+    //  DeviceOrientation.portraitDown,
+    //]);
     if (widget.kitsuModel == null) return Container();
     return Container(
       margin: EdgeInsets.only(

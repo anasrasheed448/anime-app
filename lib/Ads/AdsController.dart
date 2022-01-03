@@ -16,10 +16,10 @@ class MyBannerAd extends StatefulWidget {
 class _MyBannerAdState extends State<MyBannerAd> {
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
+    // SystemChrome.setPreferredOrientations([
+    //  DeviceOrientation.portraitUp,
+    //  DeviceOrientation.portraitDown,
+    //]);
     return GetBuilder<AdsController>(
         init: AdsController(),
         // dispose: (_) => AdsController().myBannerAd.dispose(),
@@ -44,10 +44,10 @@ class MyNativeAd extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
+    // SystemChrome.setPreferredOrientations([
+    //  DeviceOrientation.portraitUp,
+    //  DeviceOrientation.portraitDown,
+    //]);
     return GetBuilder<AdsController>(
       init: AdsController(),
       builder: (_) => AdWidget(ad: _.myNativeAd),

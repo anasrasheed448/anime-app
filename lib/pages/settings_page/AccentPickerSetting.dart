@@ -14,10 +14,10 @@ class AccentPickerSetting extends StatefulWidget {
 class _AccentPickerSettingState extends State<AccentPickerSetting> {
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
+    // SystemChrome.setPreferredOrientations([
+    //  DeviceOrientation.portraitUp,
+    //  DeviceOrientation.portraitDown,
+    //]);
     return Consumer(
       builder: (context, watch, child) {
         var provider = watch(accentProvider);

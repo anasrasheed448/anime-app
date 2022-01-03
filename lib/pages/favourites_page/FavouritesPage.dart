@@ -68,6 +68,10 @@ class _FavouritesPageState extends State<FavouritesPage>
   @override
   void initState() {
     super.initState();
+     SystemChrome.setPreferredOrientations([
+     DeviceOrientation.portraitUp,
+     DeviceOrientation.portraitDown,
+    ]);
     initBanner();
     _scrollController = ScrollController();
   }
@@ -83,9 +87,9 @@ class _FavouritesPageState extends State<FavouritesPage>
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
+      SystemChrome.setPreferredOrientations([
+     DeviceOrientation.portraitUp,
+     DeviceOrientation.portraitDown,
     ]);
     var isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
     var width = MediaQuery.of(context).size.width;

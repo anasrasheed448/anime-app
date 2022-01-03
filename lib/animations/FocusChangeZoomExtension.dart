@@ -72,10 +72,10 @@ class __ZoomOnTrueState extends State<__ZoomOnTrue>
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
+    // SystemChrome.setPreferredOrientations([
+    //  DeviceOrientation.portraitUp,
+    //  DeviceOrientation.portraitDown,
+    //]);
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       if (_hasFocus) {
         zoom();

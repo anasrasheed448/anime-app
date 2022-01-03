@@ -113,10 +113,10 @@ class _RootWindowState extends State<RootWindow> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
+    // SystemChrome.setPreferredOrientations([
+    //  DeviceOrientation.portraitUp,
+    //  DeviceOrientation.portraitDown,
+    //]);
     return DeviceOrientationBuilder(
       portrait: RootWindowPortrait(
         indexProvider: indexProvider,

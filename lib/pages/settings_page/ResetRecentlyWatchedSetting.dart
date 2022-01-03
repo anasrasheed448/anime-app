@@ -22,10 +22,10 @@ class _ResetRecentlyWatchedSettingState
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
+    // SystemChrome.setPreferredOrientations([
+    //  DeviceOrientation.portraitUp,
+    //  DeviceOrientation.portraitDown,
+    //]);
     var provider = context.read(recentlyWatchedProvider);
     return ListTile(
       title: Text('Reset Recently Watched'),

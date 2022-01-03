@@ -28,6 +28,10 @@ class _SearchPageState extends State<SearchPage>
   @override
   void initState() {
     super.initState();
+    SystemChrome.setPreferredOrientations([
+     DeviceOrientation.portraitUp,
+     DeviceOrientation.portraitDown,
+    ]);
     _textEditingController = TextEditingController(text: '');
     _scrollController = ScrollController();
     listTileNode = FocusNode();
@@ -45,10 +49,7 @@ class _SearchPageState extends State<SearchPage>
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
+    
     super.build(context);
     return Scaffold(
       appBar: AppBar(

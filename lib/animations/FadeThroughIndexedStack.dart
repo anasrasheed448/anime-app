@@ -47,10 +47,10 @@ class _FadeThroughIndexedStackState extends State<FadeThroughIndexedStack>
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
+    // SystemChrome.setPreferredOrientations([
+    //  DeviceOrientation.portraitUp,
+    //  DeviceOrientation.portraitDown,
+    //]);
     return AnimatedBuilder(
       animation: _scaleAnimation,
       builder: (context, child) => Opacity(

@@ -28,10 +28,10 @@ class _CheckUpdateSettingState extends State<CheckUpdateSetting> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
+    // SystemChrome.setPreferredOrientations([
+    //  DeviceOrientation.portraitUp,
+    //  DeviceOrientation.portraitDown,
+    //]);
     return ListTile(
       title: Text('Check for updates'),
       subtitle: Text('Get the latest and the greatest'),

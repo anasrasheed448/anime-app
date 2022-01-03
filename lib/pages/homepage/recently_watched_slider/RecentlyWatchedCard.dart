@@ -49,10 +49,10 @@ class _RecentlyWatchedCardState extends State<RecentlyWatchedCard> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
+    // SystemChrome.setPreferredOrientations([
+    //  DeviceOrientation.portraitUp,
+    //  DeviceOrientation.portraitDown,
+    //]);
     return Container(
       child: Stack(
         alignment: Alignment.center,

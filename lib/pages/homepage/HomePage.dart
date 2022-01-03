@@ -50,6 +50,10 @@ class _HomePageState extends State<HomePage>
   @override
   void initState() {
     super.initState();
+     SystemChrome.setPreferredOrientations([
+     DeviceOrientation.portraitUp,
+     DeviceOrientation.portraitDown,
+    ]);
     initBanner();
   }
 
@@ -152,13 +156,9 @@ class _HomePageState extends State<HomePage>
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
+   
     super.build(context);
-    return DeviceOrientationBuilder(
-      portrait: HomePagePortrait(widgets: [
+    return  HomePagePortrait(widgets: [
         SubCategoryText(
           text: 'Top Airing',
           padding: EdgeInsets.symmetric(
@@ -245,95 +245,97 @@ class _HomePageState extends State<HomePage>
           ),
         ),
         // Message Of The Day Card
-      ]),
-      landscape: HomePageLandscape(widgets: [
-        SubCategoryText(
-          text: 'Top Airing',
-          padding: EdgeInsets.symmetric(
-            horizontal: 16.0,
-            vertical: 12.0,
-          ),
-        ),
-        KitsuAnimeRow(
-          futureProvider: FutureProvider<
-              Tuple2<Map<TwistModel, KitsuModel>, KitsuAnimeListModel>>(
-            (ref) async => await KitsuApiService.getFanFavourites(),
-          ),
-        ),
-        SubCategoryText(
-          text: 'Top Anime Movies',
-          padding: EdgeInsets.symmetric(
-            horizontal: 16.0,
-            vertical: 10.0,
-          ),
-        ),
-        KitsuAnimeRow(
-          futureProvider: FutureProvider<
-              Tuple2<Map<TwistModel, KitsuModel>, KitsuAnimeListModel>>(
-            (ref) async => await KitsuApiService.getTopMovies(),
-          ),
-        ),
-        if (_isAdloaded)
-          Container(
-            width: myBanner.size.width.toDouble(),
-            height: myBanner.size.height.toDouble(),
-            child: AdWidget(
-              ad: myBanner,
-            ),
-          ),
-        SubCategoryText(
-          text: 'Popular Anime',
-          padding: EdgeInsets.symmetric(
-            horizontal: 16.0,
-            vertical: 10.0,
-          ),
-        ),
-        KitsuAnimeRow(
-          futureProvider: FutureProvider<
-              Tuple2<Map<TwistModel, KitsuModel>, KitsuAnimeListModel>>(
-            (ref) async => await KitsuApiService.getAllTimePopularAnimes(),
-          ),
-        ),
-        Padding(
-          padding: EdgeInsets.only(
-            top: 12.0,
-            left: 15.0,
-            right: 15.0,
-            bottom: 8.0,
-          ),
-        ),
-        // View all anime card
-        Padding(
-          padding: EdgeInsets.only(
-            left: 15.0,
-            right: 15.0,
-            bottom: 8.0,
-          ),
-          child: ViewAllAnimeCard(),
-        ),
-        Padding(
-          padding: EdgeInsets.only(
-            left: 15.0,
-            right: 15.0,
-            bottom: 8.0,
-          ), /*
-      child: Container(
-        height: 80,
-        width: double.infinity,
-        color: Colors.red,
+      ]
+      //),
+      // landscape: HomePageLandscape(widgets: [
+      //   SubCategoryText(
+      //     text: 'Top Airing',
+      //     padding: EdgeInsets.symmetric(
+      //       horizontal: 16.0,
+      //       vertical: 12.0,
+      //     ),
+      //   ),
+      //   KitsuAnimeRow(
+      //     futureProvider: FutureProvider<
+      //         Tuple2<Map<TwistModel, KitsuModel>, KitsuAnimeListModel>>(
+      //       (ref) async => await KitsuApiService.getFanFavourites(),
+      //     ),
+      //   ),
+      //   SubCategoryText(
+      //     text: 'Top Anime Movies',
+      //     padding: EdgeInsets.symmetric(
+      //       horizontal: 16.0,
+      //       vertical: 10.0,
+      //     ),
+      //   ),
+      //   KitsuAnimeRow(
+      //     futureProvider: FutureProvider<
+      //         Tuple2<Map<TwistModel, KitsuModel>, KitsuAnimeListModel>>(
+      //       (ref) async => await KitsuApiService.getTopMovies(),
+      //     ),
+      //   ),
+      //   if (_isAdloaded)
+      //     Container(
+      //       width: myBanner.size.width.toDouble(),
+      //       height: myBanner.size.height.toDouble(),
+      //       child: AdWidget(
+      //         ad: myBanner,
+      //       ),
+      //     ),
+      //   SubCategoryText(
+      //     text: 'Popular Anime',
+      //     padding: EdgeInsets.symmetric(
+      //       horizontal: 16.0,
+      //       vertical: 10.0,
+      //     ),
+      //   ),
+      //   KitsuAnimeRow(
+      //     futureProvider: FutureProvider<
+      //         Tuple2<Map<TwistModel, KitsuModel>, KitsuAnimeListModel>>(
+      //       (ref) async => await KitsuApiService.getAllTimePopularAnimes(),
+      //     ),
+      //   ),
+      //   Padding(
+      //     padding: EdgeInsets.only(
+      //       top: 12.0,
+      //       left: 15.0,
+      //       right: 15.0,
+      //       bottom: 8.0,
+      //     ),
+      //   ),
+      //   // View all anime card
+      //   Padding(
+      //     padding: EdgeInsets.only(
+      //       left: 15.0,
+      //       right: 15.0,
+      //       bottom: 8.0,
+      //     ),
+      //     child: ViewAllAnimeCard(),
+      //   ),
+      //   Padding(
+      //     padding: EdgeInsets.only(
+      //       left: 15.0,
+      //       right: 15.0,
+      //       bottom: 8.0,
+      //     ), /*
+      // child: Container(
+      //   height: 80,
+      //   width: double.infinity,
+      //   color: Colors.red,
 
-      ),*/
-        ),
+      // ),*/
+      //   ),
 
-        Padding(
-          padding: EdgeInsets.only(
-            left: 15.0,
-            right: 15.0,
-            bottom: 8.0,
-          ),
-        ),
-        // Message Of The Day Card
-      ]),
+      //   Padding(
+      //     padding: EdgeInsets.only(
+      //       left: 15.0,
+      //       right: 15.0,
+      //       bottom: 8.0,
+      //     ),
+      //   ),
+      //   // Message Of The Day Card
+      // ]),
+  
     );
   }
 

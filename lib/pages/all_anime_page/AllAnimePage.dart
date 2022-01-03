@@ -23,10 +23,10 @@ class _AllAnimePageState extends State<AllAnimePage> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
+    // SystemChrome.setPreferredOrientations([
+    //  DeviceOrientation.portraitUp,
+    //  DeviceOrientation.portraitDown,
+    //]);
     return WillPopScope(
       onWillPop: () async {
         // _previousScrollOffset = _controller.offset;

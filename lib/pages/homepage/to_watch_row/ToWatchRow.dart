@@ -21,10 +21,10 @@ class _ToWatchRowState extends State<ToWatchRow> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
+    // SystemChrome.setPreferredOrientations([
+    //  DeviceOrientation.portraitUp,
+    //  DeviceOrientation.portraitDown,
+    //]);
     return Consumer(
       builder: (context, watch, child) {
         final provider = watch(toWatchProvider);

@@ -21,12 +21,20 @@ class ErrorPage extends StatefulWidget {
 }
 
 class _ErrorPageState extends State<ErrorPage> {
+
+@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+     SystemChrome.setPreferredOrientations([
+     DeviceOrientation.portraitUp,
+     DeviceOrientation.portraitDown,
+    ]);
+  }
+
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
+   
     return Scaffold(
       appBar: AppBar(
         title: AppbarText(custom: 'error'),

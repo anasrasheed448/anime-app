@@ -94,6 +94,10 @@ class _AnimeInfoPageState extends State<AnimeInfoPage> {
 
   @override
   void initState() {
+    SystemChrome.setPreferredOrientations([
+     DeviceOrientation.portraitUp,
+     DeviceOrientation.portraitDown,
+    ]);
     super.initState();
     initBanner();
     _scrollController = ScrollController();
@@ -106,7 +110,11 @@ class _AnimeInfoPageState extends State<AnimeInfoPage> {
     });
   }
 
-  void setImageOffset() {
+  void setImageOffset() async {
+   await  SystemChrome.setPreferredOrientations([
+     DeviceOrientation.portraitUp,
+     DeviceOrientation.portraitDown,
+    ]);
     var controller = _placeholderController;
     if (MediaQuery.of(context).orientation == Orientation.portrait) {
       controller = _scrollController;
@@ -217,10 +225,10 @@ class _AnimeInfoPageState extends State<AnimeInfoPage> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
+    // SystemChrome.setPreferredOrientations([
+    //  DeviceOrientation.portraitUp,
+    //  DeviceOrientation.portraitDown,
+    // ]);
     var orientation = MediaQuery.of(context).orientation;
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
@@ -237,10 +245,12 @@ class _AnimeInfoPageState extends State<AnimeInfoPage> {
               data: (data) {
                 WidgetsBinding.instance.addPostFrameCallback(
                     (timeStamp) => scrollToLastWatched(context));
-                return DeviceOrientationBuilder(
-                  portrait: Scrollbar(
-                    controller: _scrollController,
-                    child: CustomScrollView(
+                return 
+                // DeviceOrientationBuilder(
+                //   portrait: Scrollbar(
+                //     controller: _scrollController,
+                //     child: 
+                    CustomScrollView(
                       controller: _scrollController,
                       slivers: [
                         SliverAppBar(
@@ -454,224 +464,225 @@ class _AnimeInfoPageState extends State<AnimeInfoPage> {
                           ),
                         ),
                       ],
-                    ),
-                  ),
-                  landscape: Row(
-                    children: [
-                      Expanded(
-                        child: CustomScrollView(
-                          controller: _placeholderController,
-                          slivers: [
-                            SliverAppBar(
-                              expandedHeight:
-                                  orientation == Orientation.portrait
-                                      ? height * 0.4
-                                      : width * 0.28,
-                              stretch: true,
-                              actions: [RatingWidget(kitsuModel: kitsuModel)],
-                              flexibleSpace: FlexibleSpaceBar(
-                                background: Container(
-                                  child: Stack(
-                                    fit: StackFit.expand,
-                                    children: [
-                                      Positioned.fill(
-                                        child: Consumer(
-                                          builder: (context, watch, child) {
-                                            final provider =
-                                                watch(offsetProvider);
-                                            return CachedNetworkImage(
-                                              imageUrl:
-                                                  kitsuModel?.posterImage ??
-                                                      kitsuModel?.coverImage ??
-                                                      DEFAULT_IMAGE_URL,
-                                              fit: BoxFit.cover,
-                                              alignment: Alignment(
-                                                  0, -provider.state.abs()),
-                                              placeholder: (_, __) =>
-                                                  CustomShimmer(),
-                                            );
-                                          },
-                                        ),
-                                      ),
-                                      Positioned.fill(
-                                        child: Container(
-                                          width: double.infinity,
-                                          height: double.infinity,
-                                          color: Theme.of(context)
-                                              .cardColor
-                                              .withOpacity(0.7),
-                                        ),
-                                      ),
-                                      Positioned.fill(
-                                        bottom: 20,
-                                        child: Container(
-                                          margin: EdgeInsets.symmetric(
-                                            horizontal: 20.0,
-                                          ),
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.end,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            mainAxisSize: MainAxisSize.min,
-                                            children: [
-                                              Flexible(
-                                                fit: FlexFit.loose,
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
-                                                    Expanded(
-                                                      child: AutoSizeText(
-                                                        widget.twistModel.title
-                                                            .toUpperCase(),
-                                                        textAlign:
-                                                            TextAlign.left,
-                                                        overflow: TextOverflow
-                                                            .ellipsis,
-                                                        maxLines: 2,
-                                                        minFontSize: 20.0,
-                                                        style: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          fontSize: 30.0,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Consumer(
-                                                      builder: (context, watch,
-                                                          child) {
-                                                        final provider = watch(
-                                                            toWatchProvider);
-                                                        return Container(
-                                                          height: 35.0,
-                                                          margin:
-                                                              EdgeInsets.only(
-                                                            left: 5.0,
-                                                          ),
-                                                          child: IconButton(
-                                                            icon: Icon(
-                                                              provider.isAlreadyInToWatch(
-                                                                          widget
-                                                                              .twistModel) >=
-                                                                      0
-                                                                  ? FontAwesomeIcons
-                                                                      .minus
-                                                                  : FontAwesomeIcons
-                                                                      .plus,
-                                                            ),
-                                                            onPressed: () {
-                                                              provider
-                                                                  .toggleFromToWatched(
-                                                                episodeModel:
-                                                                    null,
-                                                                kitsuModel:
-                                                                    kitsuModel,
-                                                                twistModel: widget
-                                                                    .twistModel,
-                                                              );
-                                                            },
-                                                          ),
-                                                        );
-                                                      },
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                              SizedBox(height: 5.0),
-                                              Text(
-                                                (episodes?.length?.toString() ??
-                                                        '0') +
-                                                    ' Episodes | ' +
-                                                    (widget.twistModel.ongoing
-                                                        ? 'Ongoing'
-                                                        : 'Finished'),
-                                                textAlign: TextAlign.left,
-                                                style: TextStyle(
-                                                  fontSize: 15.0,
-                                                  color: Theme.of(context)
-                                                      .hintColor,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                            SliverList(
-                              delegate: SliverChildListDelegate(
-                                [
-                                  Row(
-                                    children: [
-                                      Expanded(
-                                        child: WatchTrailerButton(
-                                          kitsuModel: kitsuModel,
-                                        ),
-                                      ),
-                                      FavouriteButton(
-                                        twistModel: widget.twistModel,
-                                        kitsuModel: kitsuModel,
-                                      ),
-                                    ],
-                                  ),
-                                  DescriptionWidget(
-                                    twistModel: widget.twistModel,
-                                    kitsuModel: kitsuModel,
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 16.0, vertical: 8.0),
-                                    child: RatingGraph(
-                                        ratingFrequencies:
-                                            kitsuModel.ratingFrequencies),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Expanded(
-                          child: SafeArea(
-                        child: Scrollbar(
-                          controller: _scrollController,
-                          child: CustomScrollView(
-                            controller: _scrollController,
-                            slivers: [
-                              SliverToBoxAdapter(
-                                child: Container(
-                                  padding: EdgeInsets.only(
-                                    left: 16.0,
-                                    right: 16.0,
-                                    bottom: 8.0,
-                                    top: 8.0,
-                                  ),
-                                  child: Text(
-                                    'SEASON ' +
-                                        widget.twistModel.season.toString(),
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 14.0,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              EpisodesSliver(
-                                episodesWatchedProvider:
-                                    _episodesWatchedProvider,
-                                episodes: episodes,
-                              ),
-                            ],
-                          ),
-                        ),
-                      )),
-                    ],
-                  ),
+                    // )
+                  // ),
+                  // landscape: Row(
+                  //   children: [
+                  //     Expanded(
+                  //       child: CustomScrollView(
+                  //         controller: _placeholderController,
+                  //         slivers: [
+                  //           SliverAppBar(
+                  //             expandedHeight:
+                  //                 orientation == Orientation.portrait
+                  //                     ? height * 0.4
+                  //                     : width * 0.28,
+                  //             stretch: true,
+                  //             actions: [RatingWidget(kitsuModel: kitsuModel)],
+                  //             flexibleSpace: FlexibleSpaceBar(
+                  //               background: Container(
+                  //                 child: Stack(
+                  //                   fit: StackFit.expand,
+                  //                   children: [
+                  //                     Positioned.fill(
+                  //                       child: Consumer(
+                  //                         builder: (context, watch, child) {
+                  //                           final provider =
+                  //                               watch(offsetProvider);
+                  //                           return CachedNetworkImage(
+                  //                             imageUrl:
+                  //                                 kitsuModel?.posterImage ??
+                  //                                     kitsuModel?.coverImage ??
+                  //                                     DEFAULT_IMAGE_URL,
+                  //                             fit: BoxFit.cover,
+                  //                             alignment: Alignment(
+                  //                                 0, -provider.state.abs()),
+                  //                             placeholder: (_, __) =>
+                  //                                 CustomShimmer(),
+                  //                           );
+                  //                         },
+                  //                       ),
+                  //                     ),
+                  //                     Positioned.fill(
+                  //                       child: Container(
+                  //                         width: double.infinity,
+                  //                         height: double.infinity,
+                  //                         color: Theme.of(context)
+                  //                             .cardColor
+                  //                             .withOpacity(0.7),
+                  //                       ),
+                  //                     ),
+                  //                     Positioned.fill(
+                  //                       bottom: 20,
+                  //                       child: Container(
+                  //                         margin: EdgeInsets.symmetric(
+                  //                           horizontal: 20.0,
+                  //                         ),
+                  //                         child: Column(
+                  //                           mainAxisAlignment:
+                  //                               MainAxisAlignment.end,
+                  //                           crossAxisAlignment:
+                  //                               CrossAxisAlignment.start,
+                  //                           mainAxisSize: MainAxisSize.min,
+                  //                           children: [
+                  //                             Flexible(
+                  //                               fit: FlexFit.loose,
+                  //                               child: Row(
+                  //                                 mainAxisAlignment:
+                  //                                     MainAxisAlignment
+                  //                                         .spaceBetween,
+                  //                                 children: [
+                  //                                   Expanded(
+                  //                                     child: AutoSizeText(
+                  //                                       widget.twistModel.title
+                  //                                           .toUpperCase(),
+                  //                                       textAlign:
+                  //                                           TextAlign.left,
+                  //                                       overflow: TextOverflow
+                  //                                           .ellipsis,
+                  //                                       maxLines: 2,
+                  //                                       minFontSize: 20.0,
+                  //                                       style: TextStyle(
+                  //                                         fontWeight:
+                  //                                             FontWeight.bold,
+                  //                                         fontSize: 30.0,
+                  //                                       ),
+                  //                                     ),
+                  //                                   ),
+                  //                                   Consumer(
+                  //                                     builder: (context, watch,
+                  //                                         child) {
+                  //                                       final provider = watch(
+                  //                                           toWatchProvider);
+                  //                                       return Container(
+                  //                                         height: 35.0,
+                  //                                         margin:
+                  //                                             EdgeInsets.only(
+                  //                                           left: 5.0,
+                  //                                         ),
+                  //                                         child: IconButton(
+                  //                                           icon: Icon(
+                  //                                             provider.isAlreadyInToWatch(
+                  //                                                         widget
+                  //                                                             .twistModel) >=
+                  //                                                     0
+                  //                                                 ? FontAwesomeIcons
+                  //                                                     .minus
+                  //                                                 : FontAwesomeIcons
+                  //                                                     .plus,
+                  //                                           ),
+                  //                                           onPressed: () {
+                  //                                             provider
+                  //                                                 .toggleFromToWatched(
+                  //                                               episodeModel:
+                  //                                                   null,
+                  //                                               kitsuModel:
+                  //                                                   kitsuModel,
+                  //                                               twistModel: widget
+                  //                                                   .twistModel,
+                  //                                             );
+                  //                                           },
+                  //                                         ),
+                  //                                       );
+                  //                                     },
+                  //                                   ),
+                  //                                 ],
+                  //                               ),
+                  //                             ),
+                  //                             SizedBox(height: 5.0),
+                  //                             Text(
+                  //                               (episodes?.length?.toString() ??
+                  //                                       '0') +
+                  //                                   ' Episodes | ' +
+                  //                                   (widget.twistModel.ongoing
+                  //                                       ? 'Ongoing'
+                  //                                       : 'Finished'),
+                  //                               textAlign: TextAlign.left,
+                  //                               style: TextStyle(
+                  //                                 fontSize: 15.0,
+                  //                                 color: Theme.of(context)
+                  //                                     .hintColor,
+                  //                               ),
+                  //                             ),
+                  //                           ],
+                  //                         ),
+                  //                       ),
+                  //                     ),
+                  //                   ],
+                  //                 ),
+                  //               ),
+                  //             ),
+                  //           ),
+                  //           SliverList(
+                  //             delegate: SliverChildListDelegate(
+                  //               [
+                  //                 Row(
+                  //                   children: [
+                  //                     Expanded(
+                  //                       child: WatchTrailerButton(
+                  //                         kitsuModel: kitsuModel,
+                  //                       ),
+                  //                     ),
+                  //                     FavouriteButton(
+                  //                       twistModel: widget.twistModel,
+                  //                       kitsuModel: kitsuModel,
+                  //                     ),
+                  //                   ],
+                  //                 ),
+                  //                 DescriptionWidget(
+                  //                   twistModel: widget.twistModel,
+                  //                   kitsuModel: kitsuModel,
+                  //                 ),
+                  //                 Padding(
+                  //                   padding: const EdgeInsets.symmetric(
+                  //                       horizontal: 16.0, vertical: 8.0),
+                  //                   child: RatingGraph(
+                  //                       ratingFrequencies:
+                  //                           kitsuModel.ratingFrequencies),
+                  //                 ),
+                  //               ],
+                  //             ),
+                  //           ),
+                  //         ],
+                  //       ),
+                  //     ),
+                  //     Expanded(
+                  //         child: SafeArea(
+                  //       child: Scrollbar(
+                  //         controller: _scrollController,
+                  //         child: CustomScrollView(
+                  //           controller: _scrollController,
+                  //           slivers: [
+                  //             SliverToBoxAdapter(
+                  //               child: Container(
+                  //                 padding: EdgeInsets.only(
+                  //                   left: 16.0,
+                  //                   right: 16.0,
+                  //                   bottom: 8.0,
+                  //                   top: 8.0,
+                  //                 ),
+                  //                 child: Text(
+                  //                   'SEASON ' +
+                  //                       widget.twistModel.season.toString(),
+                  //                   style: TextStyle(
+                  //                     fontWeight: FontWeight.bold,
+                  //                     fontSize: 14.0,
+                  //                   ),
+                  //                 ),
+                  //               ),
+                  //             ),
+                  //             EpisodesSliver(
+                  //               episodesWatchedProvider:
+                  //                   _episodesWatchedProvider,
+                  //               episodes: episodes,
+                  //             ),
+                  //           ],
+                  //         ),
+                  //       ),
+                  //     )),
+                  //   ],
+                  // ),
+               
                 );
               },
               loading: () => Center(child: RotatingPinLoadingAnimation()),

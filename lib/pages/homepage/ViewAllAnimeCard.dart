@@ -10,10 +10,10 @@ import '../../pages/all_anime_page/AllAnimePage.dart';
 class ViewAllAnimeCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
+    // SystemChrome.setPreferredOrientations([
+    //  DeviceOrientation.portraitUp,
+    //  DeviceOrientation.portraitDown,
+    //]);
     return Card(
       child: InkWell(
         borderRadius: BorderRadius.circular(8.0),

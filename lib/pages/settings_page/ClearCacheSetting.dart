@@ -19,10 +19,10 @@ class _ClearCacheSettingState extends State<ClearCacheSetting> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
+    // SystemChrome.setPreferredOrientations([
+    //  DeviceOrientation.portraitUp,
+    //  DeviceOrientation.portraitDown,
+    //]);
     return ListTile(
       title: Text('Clear network cache'),
       subtitle: Text('Get the newest data next time you open the app'),

@@ -40,8 +40,8 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
+     DeviceOrientation.portraitUp,
+     DeviceOrientation.portraitDown,
     ]);
     return Scaffold(
       appBar: AppBar(
